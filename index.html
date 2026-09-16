@@ -1,410 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Yassmine Megbli — Engineering student in computer science and finance. Explore my software development, data science and financial technology projects.">
-  <meta name="theme-color" content="#101c35">
-  <title>Yassmine Megbli | Software, Data & Finance</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101c35'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='28' font-weight='bold' fill='%235ee0cc'%3EYM%3C/text%3E%3C/svg%3E">
-  <style>
-    :root {
-      --navy: #101c35;
-      --ink: #18253e;
-      --muted: #536079;
-      --accent: #5ee0cc;
-      --blue: #1456ad;
-      --paper: #f5f7fb;
-      --line: #dce3ee;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 30px; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--ink);
-      background: var(--paper);
-    }
-    a { color: var(--blue); text-underline-offset: 4px; }
-    a:hover { text-decoration-thickness: 2px; }
-    a:focus-visible {
-      outline: 3px solid #278979;
-      outline-offset: 5px;
-      border-radius: 3px;
-    }
-    .wrap { width: min(1100px, 90%); margin: auto; }
-    .skip {
-      position: absolute;
-      top: -100px;
-      padding: 12px;
-      background: white;
-      z-index: 10;
-    }
-    .skip:focus { top: 10px; }
-    header { background: var(--navy); color: white; }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      padding: 24px 0;
-      border-bottom: 1px solid #334058;
-    }
-    .brand { font-weight: 800; letter-spacing: .08em; }
-    .nav-links { display: flex; flex-wrap: wrap; gap: 24px; }
-    nav a { color: white; text-decoration: none; font-size: .9rem; }
-    .hero {
-      display: grid;
-      grid-template-columns: 1.7fr 1fr;
-      align-items: center;
-      gap: 60px;
-      padding: 85px 0 90px;
-    }
-    .eyebrow {
-      color: var(--accent);
-      font-size: .85rem;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    h1 {
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      line-height: 1.08;
-      letter-spacing: -.045em;
-      margin: 20px 0;
-    }
-    .hero-intro { color: #d1dbeb; font-size: 1.15rem; max-width: 620px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .button {
-      display: inline-block;
-      padding: 11px 19px;
-      background: var(--accent);
-      color: var(--navy);
-      font-weight: 700;
-      text-decoration: none;
-      border: 1px solid var(--accent);
-      border-radius: 7px;
-    }
-    .button.secondary { background: transparent; color: white; border-color: #6c7c98; }
-    .button:hover { filter: brightness(.94); }
-    .hero-note { padding-left: 28px; border-left: 2px solid var(--accent); }
-    .hero-note p { color: #d1dbeb; margin: 10px 0 24px; }
-    .hero-note strong { color: white; display: block; }
-    section { padding: 65px 0; border-bottom: 1px solid var(--line); }
-    .section-heading { display: flex; align-items: baseline; gap: 18px; margin-bottom: 28px; }
-    .number { color: var(--blue); font-size: .9rem; font-weight: 700; }
-    h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); letter-spacing: -.03em; margin: 0; }
-    h3 { font-size: 1.2rem; line-height: 1.4; margin: 0 0 12px; }
-    p { margin: 0 0 16px; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-    .card { background: white; border: 1px solid var(--line); padding: 28px; border-radius: 12px; }
-    .card p { color: var(--muted); }
-    .featured { border-top: 4px solid var(--blue); }
-    .label { color: var(--blue); font-size: .85rem; font-weight: 700; margin-bottom: 12px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0; }
-    .tags span { background: #edf2f8; padding: 4px 10px; border-radius: 5px; font-size: .85rem; }
-    .project-links { display: flex; flex-wrap: wrap; gap: 16px; font-weight: 650; font-size: .9rem; }
-    .experience {
-      display: grid;
-      grid-template-columns: 230px 1fr;
-      gap: 30px;
-      padding: 26px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .experience:last-child { border: 0; padding-bottom: 0; }
-    .meta { color: var(--muted); font-size: .9rem; }
-    ul { margin: 12px 0 0; padding-left: 20px; }
-    li { margin-bottom: 8px; }
-    .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
-    .skills p { color: var(--muted); }
-    .cert-list { list-style: none; padding: 0; margin: 0; }
-    .cert-list li { padding: 14px 0; border-bottom: 1px solid var(--line); }
-    .cert-list li:last-child { border: 0; }
-    .cert-list small { display: block; color: var(--muted); font-size: .85rem; }
-    .contact { background: var(--navy); color: white; padding: 60px 0; }
-    .contact p { color: #d1dbeb; margin-top: 16px; }
-    .contact a:not(.button) { color: var(--accent); overflow-wrap: anywhere; }
-    footer { background: var(--navy); color: #b8c5da; padding: 20px 0; font-size: .85rem; }
-    @media (max-width: 760px) {
-      nav { align-items: flex-start; flex-direction: column; gap: 14px; }
-      .nav-links { gap: 18px; }
-      .hero { grid-template-columns: 1fr; gap: 35px; padding: 50px 0; }
-      .hero-note { padding-left: 20px; }
-      .grid, .skills, .experience { grid-template-columns: 1fr; }
-      .experience { gap: 10px; }
-      section { padding: 42px 0; }
-      .card { padding: 23px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Yassmine Megbli — Software engineering, data science and finance portfolio.">
+<meta name="theme-color" content="#7952b3">
+<title>Yassmine Megbli | Portfolio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%237952b3'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='27' font-weight='bold' fill='white'%3EYM%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  --purple: #7044a5;
+  --pink: #a73573;
+  --ink: #342444;
+  --muted: #6c5b79;
+  --line: #eadff1;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 25px; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fcf9ff;
+  font: 16px/1.75 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+a { color: var(--purple); text-underline-offset: 4px; }
+a:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 5px;
+}
+.wrap { width: min(1080px, 90%); margin: auto; }
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 0;
+}
+.logo {
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.nav-links { display: flex; flex-wrap: wrap; gap: 24px; }
+.nav-links a { text-decoration: none; font-size: .9rem; font-weight: 600; }
+.nav-links a:hover { color: var(--pink); }
+header {
+  background:
+    radial-gradient(ellipse at 90% 30%, #f7dced 0, transparent 55%),
+    radial-gradient(ellipse at 10% 80%, #e9ddfb 0, transparent 60%),
+    #fffafd;
+  border-bottom: 1px solid var(--line);
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 65px;
+  padding: 75px 0 95px;
+}
+.badge {
+  display: inline-block;
+  color: var(--purple);
+  background: #ffffffb8;
+  border: 1px solid #d9c4ec;
+  padding: 7px 15px;
+  border-radius: 30px;
+  font-size: .85rem;
+  font-weight: 650;
+}
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -.04em;
+  margin: 23px 0;
+}
+h1 span { color: var(--purple); }
+.intro { color: var(--muted); font-size: 1.1rem; max-width: 580px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+.button {
+  display: inline-block;
+  background: var(--purple);
+  color: white;
+  border: 1px solid var(--purple);
+  border-radius: 30px;
+  padding: 11px 22px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.button:hover { transform: translateY(-3px); box-shadow: 0 7px 20px #7044a525; }
+.button.light { background: white; color: var(--purple); border-color: #d8c3e9; }
+.note {
+  background: #ffffffd9;
+  border: 1px solid white;
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 20px 60px #7952b314;
+  transform: rotate(2deg);
+}
+.monogram {
+  width: 75px;
+  height: 75px;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  background: #ede2fa;
+  color: var(--purple);
+  font: 1.8rem Georgia, serif;
+  margin-bottom: 20px;
+}
+.note h2 { font-size: 1.35rem; }
+.note p { color: var(--muted); margin-bottom: 12px; }
+.note-bottom { border-top: 1px solid var(--line); padding-top: 15px; font-size: .9rem; }
+section { padding: 60px 0; }
+.kicker {
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-weight: 700;
+  font-size: .8rem;
+  margin-bottom: 8px;
+}
+h2 {
+  font-family: Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1.3;
+  margin: 0 0 25px;
+}
+h3 { font-size: 1.2rem; line-height: 1.4; margin: 0 0 12px; }
+p { margin: 0 0 16px; }
+.about-text { max-width: 810px; color: var(--muted); font-size: 1.05rem; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 23px; }
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 29px;
+  box-shadow: 0 8px 25px #4b236205;
+}
+.card p { color: var(--muted); }
+.card.purple { background: #f4eefd; }
+.card.pink { background: #fff0f7; }
+.category { color: var(--pink); font-size: .8rem; font-weight: 700; margin-bottom: 15px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0; }
+.tags span {
+  background: #ffffffc9;
+  border: 1px solid #e5d6ed;
+  color: #634579;
+  border-radius: 20px;
+  padding: 4px 11px;
+  font-size: .8rem;
+}
+.links { display: flex; flex-wrap: wrap; gap: 16px; font-size: .9rem; font-weight: 650; }
+.timeline { border-left: 2px solid #dcc8ef; padding-left: 27px; }
+.job { padding: 5px 0 28px; }
+.job:last-child { padding-bottom: 0; }
+.date { color: var(--pink); font-size: .85rem; font-weight: 650; margin-bottom: 7px; }
+.job p { color: var(--muted); max-width: 800px; }
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.skills .card { padding: 24px; }
+.skills p { margin-bottom: 0; }
+.cert {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cert:last-child { border-bottom: 0; }
+.cert small { color: var(--muted); white-space: nowrap; font-size: .85rem; }
+.contact {
+  text-align: center;
+  background: linear-gradient(120deg, #ede0fb, #ffe4f0);
+  border-radius: 32px;
+  padding: 50px 25px;
+  margin: 35px 0 55px;
+}
+.contact p { color: var(--muted); max-width: 620px; margin: 0 auto 18px; }
+.contact .actions { justify-content: center; }
+.email { overflow-wrap: anywhere; font-weight: 650; }
+footer { text-align: center; padding: 0 20px 28px; color: var(--muted); font-size: .85rem; }
+.skip { position: absolute; left: 10px; top: -100px; background: white; padding: 10px; z-index: 10; }
+.skip:focus { top: 10px; }
+@media (max-width: 760px) {
+  nav { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .nav-links { gap: 17px; }
+  .hero { grid-template-columns: 1fr; padding: 40px 0 55px; gap: 35px; }
+  .note { transform: none; }
+  .grid, .skills { grid-template-columns: 1fr; }
+  section { padding: 38px 0; }
+  .cert { flex-direction: column; gap: 4px; }
+  .contact { border-radius: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; }
+  .button:hover { transform: none; }
+}
+</style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
 
-  <header>
-    <div class="wrap">
-      <nav aria-label="Main navigation">
-        <a class="brand" href="#" aria-label="Yassmine Megbli home">YM.</a>
-        <div class="nav-links">
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+<a class="skip" href="#main">Skip to content</a>
 
-      <div class="hero">
-        <div>
-          <div class="eyebrow">Software · Data · Finance</div>
-          <h1>Yassmine<br>Megbli.</h1>
-          <p class="hero-intro">
-            Engineering student combining software development,
-            data science and financial modelling to solve practical problems.
-          </p>
-          <div class="actions">
-            <a class="button" href="#projects">Explore my projects</a>
-            <a class="button secondary" href="mailto:yassminemegbli44@gmail.com">Get in touch</a>
-          </div>
-        </div>
-        <aside class="hero-note" aria-label="At a glance">
-          <p><strong>Final-year engineering student</strong>ESPRIT · Tunisia</p>
-          <p><strong>Seeking a six-month internship</strong>From February 2027</p>
-          <p><strong>Areas of interest</strong>Software engineering, data science and fintech</p>
-        </aside>
+<header>
+  <div class="wrap">
+    <nav aria-label="Main navigation">
+      <a class="logo" href="#">Yassmine.</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
       </div>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <span class="badge">Open to a final-year internship · February 2027</span>
+        <h1>Hi, I’m<br><span>Yassmine Megbli.</span></h1>
+        <p class="intro">
+          An engineering student exploring the intersection of
+          software, data and finance — with curiosity and attention to detail.
+        </p>
+        <div class="actions">
+          <a class="button" href="#projects">Discover my work</a>
+          <a class="button light" href="mailto:yassminemegbli44@gmail.com">Let’s connect</a>
+        </div>
+      </div>
+
+      <aside class="note" aria-label="Profile summary">
+        <div class="monogram" aria-hidden="true">YM</div>
+        <h2>Code. Analyse. Create.</h2>
+        <p>Final-year engineering student at ESPRIT, specialising in Financial Computing.</p>
+        <p>Interested in building useful applications and understanding the data behind them.</p>
+        <div class="note-bottom">Based in Tunisia · Seeking a six-month internship</div>
+      </aside>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main id="main" class="wrap">
-    <section id="projects">
-      <div class="section-heading">
-        <span class="number">01</span><h2>Selected projects</h2>
-      </div>
-
-      <div class="grid">
-        <article class="card featured">
-          <div class="label">FINTECH · TEAM PROJECT</div>
-          <h3>CrediGuard</h3>
-          <p>
-            An academic fintech platform bringing together web development,
-            user security and machine learning.
-          </p>
-          <p>
-            My contributions included e-commerce functionality, user access
-            management with JWT and role-based permissions, and machine
-            learning work on scoring and segmentation.
-          </p>
-          <div class="tags">
-            <span>Angular</span><span>Spring Boot</span><span>Flask</span>
-            <span>MySQL</span><span>Machine Learning</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/yassmine44/Esprit-PIINFINI-4infini2-2526-CrediGuard-FRONT">GitHub: frontend</a>
-            <a href="https://github.com/nadine-chrigui/Esprit-PIINFINI-4infini2-2526-CrediGuard-BACK">GitHub: backend</a>
-            <a href="https://lnkd.in/p/dTSws9wY">LinkedIn demo</a>
-          </div>
-        </article>
-
-        <article class="card featured">
-          <div class="label">ENTREPREN’UP · THIRD PLACE</div>
-          <h3>Auralis</h3>
-          <p>
-            A team project combining artificial intelligence, business
-            intelligence and cybersecurity around financial risk.
-          </p>
-          <p>
-            I contributed to the technical work, financial analysis,
-            market research, business plan and pitch.
-            The project earned third place at Entrepren’Up.
-          </p>
-          <div class="tags">
-            <span>AI</span><span>Financial Risk</span>
-            <span>Business Intelligence</span><span>Entrepreneurship</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="label">DATA SCIENCE · BIAT ASSURANCES INTERNSHIP</div>
-          <h3>Motor insurance pricing</h3>
-          <p>
-            Analysed policy and claims data from 2019–2023 to support
-            comprehensive motor insurance pricing.
-          </p>
-          <p>
-            Prepared a policy-year dataset, investigated exposure and risk
-            factors, and applied Poisson GLM modelling and backtesting
-            to assess claims frequency and prospective pricing.
-          </p>
-          <div class="tags">
-            <span>Python</span><span>Pandas</span><span>Poisson GLM</span>
-            <span>CRISP-DM</span><span>Excel</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="label">WEB DEVELOPMENT · SECURITY</div>
-          <h3>Banking workflow application</h3>
-          <p>
-            A banking web application built with Angular, Spring Boot
-            and Oracle, integrating REST services and access management.
-          </p>
-          <p>
-            Worked on authentication and authorisation using
-            Active Directory / LDAP, JWT, roles and permissions.
-          </p>
-          <div class="tags">
-            <span>Spring Boot</span><span>Angular</span><span>Oracle</span>
-            <span>REST API</span><span>JWT</span><span>LDAP</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="section-heading">
-        <span class="number">02</span><h2>Experience</h2>
-      </div>
-
-      <article class="experience">
-        <div>
-          <h3>BIAT Assurances</h3>
-          <div class="meta">June – August 2026 · Tunisia</div>
-        </div>
-        <div>
-          <h3>Data Science &amp; Non-Life Actuarial Intern</h3>
-          <ul>
-            <li>Cleaned and reconciled policy and SAP claims data with Python, Pandas and Excel.</li>
-            <li>Analysed claims frequency, exposure and risk factors using the CRISP-DM methodology.</li>
-            <li>Applied statistical and machine learning approaches to motor insurance pricing.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="experience">
-        <div>
-          <h3>Forvis Mazars</h3>
-          <div class="meta">July – August 2025 · Tunis</div>
-        </div>
-        <div>
-          <h3>Cybersecurity Intern — Security Excellence Center</h3>
-          <ul>
-            <li>Configured Snort intrusion detection and custom rules for suspicious network activity.</li>
-            <li>Integrated security alerts into an ELK pipeline using Docker.</li>
-            <li>Created Kibana dashboards and analysed alerts from simulated attacks.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="experience">
-        <div>
-          <h3>Tunisie Telecom</h3>
-          <div class="meta">June 2022 · Kairouan</div>
-        </div>
-        <div>
-          <h3>Introductory Intern</h3>
-          <p>Initial exposure to a professional telecommunications environment.</p>
-        </div>
-      </article>
-    </section>
-
-    <section id="skills">
-      <div class="section-heading">
-        <span class="number">03</span><h2>Technical toolkit</h2>
-      </div>
-      <div class="skills">
-        <div>
-          <h3>Software development</h3>
-          <p>Java, Spring Boot, Angular, TypeScript, JavaScript, Python, REST APIs, JavaFX, C/C++.</p>
-        </div>
-        <div>
-          <h3>Data &amp; modelling</h3>
-          <p>Pandas, GLMs, logistic regression, Random Forest, XGBoost, K-Means, PCA, SQL, Excel.</p>
-        </div>
-        <div>
-          <h3>Systems &amp; tools</h3>
-          <p>Git, Docker, Linux, MySQL, Oracle, MongoDB, Snort, ELK, JWT, Active Directory / LDAP.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="education">
-      <div class="section-heading">
-        <span class="number">04</span><h2>Education &amp; engagement</h2>
-      </div>
-      <div class="grid">
-        <article class="card">
-          <div class="label">2022 – 2027 · EXPECTED GRADUATION</div>
-          <h3>ESPRIT — Engineering studies</h3>
-          <p>Computer Science Engineering, specialising in Financial Computing.</p>
-          <p>
-            <strong>Selected coursework:</strong> applied machine learning,
-            stochastic processes, Monte Carlo methods, mathematical finance,
-            financial markets, actuarial science, risk measurement,
-            service-oriented architecture, DevOps and software testing.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Community &amp; languages</h3>
-          <p>
-            Member of <strong>IEEE Women in Engineering (WIE)</strong>
-            and <strong>IEEE Computer Society (CS)</strong>.
-          </p>
-          <ul>
-            <li>Arabic — Native</li>
-            <li>French — B2</li>
-            <li>English — B2</li>
-            <li>German — Intermediate</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="certifications">
-      <div class="section-heading">
-        <span class="number">05</span><h2>Certifications &amp; job simulations</h2>
-      </div>
-      <ul class="cert-list">
-        <li>
-          <a href="https://verify.skilljar.com/c/d2bmteki7xta"><strong>Dataiku Core Designer</strong></a>
-          <small>Dataiku · September 2026</small>
-        </li>
-        <li>
-          <a href="https://www.theforage.com/completion-certificates/Z3pPDqCPapFTSGBgi/25RAqjzJnD3b8YPZv_Z3pPDqCPapFTSGBgi_6aa2d7a8f3d601bc30ba03d8_1789066148162_completion_certificate.pdf"><strong>EY Technology Risk Job Simulation</strong></a>
-          <small>Forage · September 2026</small>
-        </li>
-        <li>
-          <a href="https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_6aa2d7a8f3d601bc30ba03d8_1789070268243_completion_certificate.pdf"><strong>Mastercard Cybersecurity Job Simulation</strong></a>
-          <small>Forage · September 2026</small>
-        </li>
-        <li>
-          <strong>PwC US Audit Job Simulation</strong>
-          <small>Forage · September 2026</small>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <h2>Let’s get in touch.</h2>
+<main id="main" class="wrap">
+  <section id="about">
+    <div class="kicker">A little about me</div>
+    <h2>Technical curiosity, financial perspective.</h2>
+    <div class="about-text">
       <p>
-        I am looking for a six-month final-year internship from February 2027
-        in software engineering, data science or fintech.
+        I study Computer Science Engineering at ESPRIT, with a specialisation
+        in Financial Computing. I enjoy working across software development,
+        machine learning and financial modelling.
       </p>
-      <p><a href="mailto:yassminemegbli44@gmail.com">yassminemegbli44@gmail.com</a></p>
-      <div class="actions">
-        <a class="button" href="https://www.linkedin.com/in/yassmine-megbli-6ab572330/">LinkedIn</a>
-        <a class="button secondary" href="https://github.com/yassmine44">GitHub</a>
+      <p>
+        Through my projects and internships at BIAT Assurances and Forvis Mazars,
+        I have worked on insurance data, predictive modelling, web applications
+        and cybersecurity. I am looking for a six-month final-year internship
+        starting in February 2027.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="kicker">Things I’ve worked on</div>
+    <h2>Selected projects</h2>
+
+    <div class="grid">
+      <article class="card purple">
+        <div class="category">FINTECH · TEAM PROJECT</div>
+        <h3>CrediGuard</h3>
+        <p>
+          An academic fintech platform combining web development,
+          user security and machine learning.
+        </p>
+        <p>
+          My contributions included e-commerce functionality, JWT-based
+          access management, roles and permissions, and machine learning
+          work on scoring and segmentation.
+        </p>
+        <div class="tags">
+          <span>Angular</span><span>Spring Boot</span>
+          <span>Flask</span><span>MySQL</span><span>ML</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/yassmine44/Esprit-PIINFINI-4infini2-2526-CrediGuard-FRONT">Frontend</a>
+          <a href="https://github.com/nadine-chrigui/Esprit-PIINFINI-4infini2-2526-CrediGuard-BACK">Backend</a>
+          <a href="https://lnkd.in/p/dTSws9wY">Watch demo</a>
+        </div>
+      </article>
+
+      <article class="card pink">
+        <div class="category">ENTREPREN’UP · THIRD PLACE</div>
+        <h3>Auralis</h3>
+        <p>
+          A team project exploring artificial intelligence, business
+          intelligence and cybersecurity for financial risk.
+        </p>
+        <p>
+          I contributed to the technical work, financial analysis,
+          market research, business plan and pitch.
+          Our project earned third place at Entrepren’Up.
+        </p>
+        <div class="tags">
+          <span>AI</span><span>Financial Risk</span>
+          <span>Business Intelligence</span><span>Entrepreneurship</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="category">DATA SCIENCE · INTERNSHIP PROJECT</div>
+        <h3>Motor insurance pricing</h3>
+        <p>
+          At BIAT Assurances, I analysed policy and claims data covering
+          2019–2023 to support comprehensive motor insurance pricing.
+        </p>
+        <p>
+          My work covered data preparation, policy-year analysis,
+          exposure and risk factors, Poisson GLM modelling and backtesting.
+        </p>
+        <div class="tags">
+          <span>Python</span><span>Pandas</span><span>GLM</span>
+          <span>CRISP-DM</span><span>Excel</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="category">FULL-STACK DEVELOPMENT</div>
+        <h3>Banking workflow application</h3>
+        <p>
+          A banking web application integrating REST services and
+          user access management.
+        </p>
+        <p>
+          Worked on authentication and authorisation with
+          Active Directory / LDAP, JWT, roles and permissions.
+        </p>
+        <div class="tags">
+          <span>Angular</span><span>Spring Boot</span>
+          <span>Oracle</span><span>REST</span><span>JWT</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="kicker">Learning through practice</div>
+    <h2>My experience</h2>
+    <div class="timeline">
+      <article class="job">
+        <div class="date">June – August 2026</div>
+        <h3>BIAT Assurances · Data Science &amp; Actuarial Intern</h3>
+        <p>
+          Cleaned and reconciled policy and SAP claims data with Python,
+          Pandas and Excel. Analysed claims frequency and exposure, and
+          applied statistical and machine learning approaches to motor
+          insurance pricing.
+        </p>
+      </article>
+      <article class="job">
+        <div class="date">July – August 2025</div>
+        <h3>Forvis Mazars · Cybersecurity Intern</h3>
+        <p>
+          Worked with the Security Excellence Center on Snort intrusion
+          detection, custom alert rules and an ELK pipeline using Docker.
+          Created Kibana dashboards to analyse simulated attacks.
+        </p>
+      </article>
+      <article class="job">
+        <div class="date">June 2022</div>
+        <h3>Tunisie Telecom · Introductory Intern</h3>
+        <p>Gained initial exposure to a professional telecommunications environment in Kairouan.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="kicker">My toolkit</div>
+    <h2>Skills I bring to a team</h2>
+    <div class="skills">
+      <article class="card">
+        <h3>Development</h3>
+        <p>Java, Spring Boot, Angular, TypeScript, JavaScript, Python, REST APIs, JavaFX, C/C++.</p>
+      </article>
+      <article class="card">
+        <h3>Data &amp; modelling</h3>
+        <p>Pandas, GLMs, logistic regression, Random Forest, XGBoost, K-Means, PCA, SQL and Excel.</p>
+      </article>
+      <article class="card">
+        <h3>Tools &amp; security</h3>
+        <p>Git, Docker, Linux, MySQL, Oracle, MongoDB, Snort, ELK, JWT and Active Directory / LDAP.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="kicker">Studies &amp; community</div>
+    <h2>Always learning</h2>
+    <div class="grid">
+      <article class="card purple">
+        <div class="category">ESPRIT · 2022–2027, EXPECTED</div>
+        <h3>Computer Science Engineering</h3>
+        <p>Specialisation in Financial Computing.</p>
+        <p>
+          Coursework: applied machine learning, stochastic processes,
+          Monte Carlo methods, mathematical finance, financial markets,
+          actuarial science, risk measurement, service-oriented architecture,
+          DevOps and software testing.
+        </p>
+      </article>
+      <article class="card pink">
+        <h3>Beyond the classroom</h3>
+        <p>
+          Member of <strong>IEEE Women in Engineering (WIE)</strong>
+          and <strong>IEEE Computer Society (CS)</strong>.
+        </p>
+        <h3>Languages</h3>
+        <p>
+          Arabic — Native<br>
+          French — B2<br>
+          English — B2<br>
+          German — Intermediate
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="kicker">Continuing to grow</div>
+    <h2>Certifications &amp; job simulations</h2>
+    <div class="card">
+      <div class="cert">
+        <a href="https://verify.skilljar.com/c/d2bmteki7xta">Dataiku Core Designer</a>
+        <small>September 2026</small>
+      </div>
+      <div class="cert">
+        <a href="https://www.theforage.com/completion-certificates/Z3pPDqCPapFTSGBgi/25RAqjzJnD3b8YPZv_Z3pPDqCPapFTSGBgi_6aa2d7a8f3d601bc30ba03d8_1789066148162_completion_certificate.pdf">EY Technology Risk · Forage simulation</a>
+        <small>September 2026</small>
+      </div>
+      <div class="cert">
+        <a href="https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_6aa2d7a8f3d601bc30ba03d8_1789070268243_completion_certificate.pdf">Mastercard Cybersecurity · Forage simulation</a>
+        <small>September 2026</small>
+      </div>
+      <div class="cert">
+        <span>PwC US Audit · Forage simulation</span>
+        <small>September 2026</small>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="wrap">© 2026 Yassmine Megbli</div>
-  </footer>
+  <section class="contact" id="contact">
+    <div class="kicker">Let’s connect</div>
+    <h2>Have an opportunity in mind?</h2>
+    <p>
+      I would love to discuss a final-year internship in software
+      engineering, data science or fintech.
+    </p>
+    <a class="email" href="mailto:yassminemegbli44@gmail.com">yassminemegbli44@gmail.com</a>
+    <div class="actions">
+      <a class="button" href="https://www.linkedin.com/in/yassmine-megbli-6ab572330/">LinkedIn</a>
+      <a class="button light" href="https://github.com/yassmine44">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Yassmine Megbli · Software, Data &amp; Finance</footer>
 </body>
 </html>
