@@ -1,472 +1,898 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Yassmine Megbli — Software engineering, data science and finance portfolio.">
-<meta name="theme-color" content="#7952b3">
-<title>Yassmine Megbli | Portfolio</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%237952b3'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='27' font-weight='bold' fill='white'%3EYM%3C/text%3E%3C/svg%3E">
-<style>
-:root {
-  --purple: #7044a5;
-  --pink: #a73573;
-  --ink: #342444;
-  --muted: #6c5b79;
-  --line: #eadff1;
-  --white: #ffffff;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 25px; }
-body {
-  margin: 0;
-  color: var(--ink);
-  background: #fcf9ff;
-  font: 16px/1.75 system-ui, -apple-system, "Segoe UI", sans-serif;
-}
-a { color: var(--purple); text-underline-offset: 4px; }
-a:focus-visible {
-  outline: 3px solid var(--pink);
-  outline-offset: 5px;
-}
-.wrap { width: min(1080px, 90%); margin: auto; }
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 25px 0;
-}
-.logo {
-  font-family: Georgia, serif;
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-.nav-links { display: flex; flex-wrap: wrap; gap: 24px; }
-.nav-links a { text-decoration: none; font-size: .9rem; font-weight: 600; }
-.nav-links a:hover { color: var(--pink); }
-header {
-  background:
-    radial-gradient(ellipse at 90% 30%, #f7dced 0, transparent 55%),
-    radial-gradient(ellipse at 10% 80%, #e9ddfb 0, transparent 60%),
-    #fffafd;
-  border-bottom: 1px solid var(--line);
-}
-.hero {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  align-items: center;
-  gap: 65px;
-  padding: 75px 0 95px;
-}
-.badge {
-  display: inline-block;
-  color: var(--purple);
-  background: #ffffffb8;
-  border: 1px solid #d9c4ec;
-  padding: 7px 15px;
-  border-radius: 30px;
-  font-size: .85rem;
-  font-weight: 650;
-}
-h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(3rem, 7vw, 5.2rem);
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -.04em;
-  margin: 23px 0;
-}
-h1 span { color: var(--purple); }
-.intro { color: var(--muted); font-size: 1.1rem; max-width: 580px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
-.button {
-  display: inline-block;
-  background: var(--purple);
-  color: white;
-  border: 1px solid var(--purple);
-  border-radius: 30px;
-  padding: 11px 22px;
-  font-weight: 650;
-  text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
-}
-.button:hover { transform: translateY(-3px); box-shadow: 0 7px 20px #7044a525; }
-.button.light { background: white; color: var(--purple); border-color: #d8c3e9; }
-.note {
-  background: #ffffffd9;
-  border: 1px solid white;
-  border-radius: 28px;
-  padding: 32px;
-  box-shadow: 0 20px 60px #7952b314;
-  transform: rotate(2deg);
-}
-.monogram {
-  width: 75px;
-  height: 75px;
-  display: grid;
-  place-items: center;
-  border-radius: 24px;
-  background: #ede2fa;
-  color: var(--purple);
-  font: 1.8rem Georgia, serif;
-  margin-bottom: 20px;
-}
-.note h2 { font-size: 1.35rem; }
-.note p { color: var(--muted); margin-bottom: 12px; }
-.note-bottom { border-top: 1px solid var(--line); padding-top: 15px; font-size: .9rem; }
-section { padding: 60px 0; }
-.kicker {
-  color: var(--pink);
-  text-transform: uppercase;
-  letter-spacing: .16em;
-  font-weight: 700;
-  font-size: .8rem;
-  margin-bottom: 8px;
-}
-h2 {
-  font-family: Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(1.9rem, 4vw, 2.5rem);
-  line-height: 1.3;
-  margin: 0 0 25px;
-}
-h3 { font-size: 1.2rem; line-height: 1.4; margin: 0 0 12px; }
-p { margin: 0 0 16px; }
-.about-text { max-width: 810px; color: var(--muted); font-size: 1.05rem; }
-.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 23px; }
-.card {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 29px;
-  box-shadow: 0 8px 25px #4b236205;
-}
-.card p { color: var(--muted); }
-.card.purple { background: #f4eefd; }
-.card.pink { background: #fff0f7; }
-.category { color: var(--pink); font-size: .8rem; font-weight: 700; margin-bottom: 15px; }
-.tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0; }
-.tags span {
-  background: #ffffffc9;
-  border: 1px solid #e5d6ed;
-  color: #634579;
-  border-radius: 20px;
-  padding: 4px 11px;
-  font-size: .8rem;
-}
-.links { display: flex; flex-wrap: wrap; gap: 16px; font-size: .9rem; font-weight: 650; }
-.timeline { border-left: 2px solid #dcc8ef; padding-left: 27px; }
-.job { padding: 5px 0 28px; }
-.job:last-child { padding-bottom: 0; }
-.date { color: var(--pink); font-size: .85rem; font-weight: 650; margin-bottom: 7px; }
-.job p { color: var(--muted); max-width: 800px; }
-.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.skills .card { padding: 24px; }
-.skills p { margin-bottom: 0; }
-.cert {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 20px;
-  padding: 17px 0;
-  border-bottom: 1px solid var(--line);
-}
-.cert:last-child { border-bottom: 0; }
-.cert small { color: var(--muted); white-space: nowrap; font-size: .85rem; }
-.contact {
-  text-align: center;
-  background: linear-gradient(120deg, #ede0fb, #ffe4f0);
-  border-radius: 32px;
-  padding: 50px 25px;
-  margin: 35px 0 55px;
-}
-.contact p { color: var(--muted); max-width: 620px; margin: 0 auto 18px; }
-.contact .actions { justify-content: center; }
-.email { overflow-wrap: anywhere; font-weight: 650; }
-footer { text-align: center; padding: 0 20px 28px; color: var(--muted); font-size: .85rem; }
-.skip { position: absolute; left: 10px; top: -100px; background: white; padding: 10px; z-index: 10; }
-.skip:focus { top: 10px; }
-@media (max-width: 760px) {
-  nav { align-items: flex-start; flex-direction: column; gap: 12px; }
-  .nav-links { gap: 17px; }
-  .hero { grid-template-columns: 1fr; padding: 40px 0 55px; gap: 35px; }
-  .note { transform: none; }
-  .grid, .skills { grid-template-columns: 1fr; }
-  section { padding: 38px 0; }
-  .cert { flex-direction: column; gap: 4px; }
-  .contact { border-radius: 24px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .button { transition: none; }
-  .button:hover { transform: none; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7546a3">
+  <meta name="description" content="Portfolio de Yassmine Megbli — développement logiciel, data science et finance.">
+  <title>Yassmine Megbli | Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%237546a3'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='27' font-weight='bold' fill='white'%3EYM%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --purple: #7546a3;
+      --purple-dark: #543174;
+      --pink: #a43571;
+      --ink: #362641;
+      --muted: #6c5b76;
+      --line: #e8dced;
+      --background: #fdfaff;
+    }
+
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 25px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ink);
+      font: 16px/1.75 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    a {
+      color: var(--purple);
+      text-underline-offset: 4px;
+    }
+
+    a:hover { color: var(--pink); }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--pink);
+      outline-offset: 5px;
+    }
+
+    button { font: inherit; }
+    img { display: block; max-width: 100%; }
+    p { margin: 0 0 16px; }
+
+    .wrap {
+      width: min(1120px, 90%);
+      margin-inline: auto;
+    }
+
+    .skip {
+      position: absolute;
+      top: -100px;
+      left: 15px;
+      background: white;
+      padding: 12px;
+      z-index: 20;
+    }
+
+    .skip:focus { top: 10px; }
+
+    header {
+      background:
+        radial-gradient(ellipse at 85% 35%, #f7d9eb, transparent 55%),
+        radial-gradient(ellipse at 12% 80%, #e8dbf7, transparent 60%),
+        #fffafd;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 0;
+    }
+
+    .logo {
+      font: bold 1.65rem Georgia, serif;
+      text-decoration: none;
+    }
+
+    .nav-right,
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 650;
+    }
+
+    .language-switch {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid #d9c5e8;
+      border-radius: 30px;
+      background: #ffffffb8;
+    }
+
+    .language-switch button {
+      min-width: 44px;
+      min-height: 40px;
+      border: 0;
+      border-radius: 24px;
+      background: transparent;
+      color: var(--purple-dark);
+      cursor: pointer;
+      font-size: .85rem;
+      font-weight: 750;
+    }
+
+    .language-switch button[aria-pressed="true"] {
+      background: var(--purple);
+      color: white;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      align-items: center;
+      gap: 65px;
+      padding: 60px 0 85px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid #d8c1e8;
+      border-radius: 25px;
+      background: #ffffffc9;
+      color: var(--purple-dark);
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
+    h1 {
+      margin: 24px 0;
+      font-family: Georgia, serif;
+      font-size: clamp(2.9rem, 6vw, 4.7rem);
+      font-weight: 500;
+      letter-spacing: -.04em;
+      line-height: 1.12;
+    }
+
+    h1 .name { color: var(--purple); }
+
+    .intro {
+      max-width: 600px;
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 22px;
+      border: 1px solid var(--purple);
+      border-radius: 30px;
+      background: var(--purple);
+      color: white;
+      text-decoration: none;
+      font-weight: 650;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .button:hover {
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px #7546a325;
+    }
+
+    .button.light {
+      color: var(--purple-dark);
+      background: white;
+      border-color: #d8c3e9;
+    }
+
+    .portrait-card {
+      margin: 0;
+      padding: 14px;
+      background: #ffffffd9;
+      border: 1px solid white;
+      border-radius: 110px 110px 28px 28px;
+      box-shadow: 0 24px 65px #7546a31a;
+      transform: rotate(2deg);
+    }
+
+    .portrait {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      background: #eee1f7;
+      border-radius: 98px 98px 18px 18px;
+    }
+
+    .portrait img,
+    .portrait-fallback {
+      grid-area: 1 / 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .portrait img {
+      position: relative;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .portrait-fallback {
+      display: grid;
+      place-items: center;
+      color: var(--purple);
+      font: 5rem Georgia, serif;
+    }
+
+    figcaption {
+      padding: 17px 10px 7px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    figcaption strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    section { padding: 55px 0; }
+
+    .kicker {
+      margin-bottom: 8px;
+      color: var(--pink);
+      font-size: .8rem;
+      font-weight: 750;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 25px;
+      font: 500 clamp(1.9rem, 4vw, 2.5rem)/1.3 Georgia, serif;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .about-text {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 8px 25px #4b236205;
+    }
+
+    .card-body { padding: 28px; }
+    .card p { color: var(--muted); }
+    .purple { background: #f4eefd; }
+    .pink { background: #fff0f7; }
+
+    .project-image {
+      width: 100%;
+      height: auto;
+      background: white;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .category {
+      margin-bottom: 13px;
+      color: var(--pink);
+      font-size: .8rem;
+      font-weight: 750;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 20px 0;
+    }
+
+    .tags span {
+      padding: 4px 11px;
+      border: 1px solid #e2d3eb;
+      border-radius: 20px;
+      background: #ffffffd9;
+      color: #654777;
+      font-size: .8rem;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    details {
+      margin-top: 18px;
+      border-top: 1px solid #dfcfe8;
+      padding-top: 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--purple-dark);
+      font-weight: 650;
+    }
+
+    details p {
+      margin: 12px 0 0;
+      font-size: .95rem;
+    }
+
+    .timeline {
+      padding-left: 27px;
+      border-left: 2px solid #dcc8ef;
+    }
+
+    .job { padding: 5px 0 30px; }
+    .job:last-child { padding-bottom: 0; }
+
+    .date {
+      margin-bottom: 8px;
+      color: var(--pink);
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
+    .job p { max-width: 850px; color: var(--muted); }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .skills p { margin-bottom: 0; }
+
+    .cert {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cert:last-child { border-bottom: 0; }
+
+    .cert small {
+      color: var(--muted);
+      font-size: .85rem;
+      white-space: nowrap;
+    }
+
+    .contact {
+      margin: 30px 0 50px;
+      padding: 50px 25px;
+      border-radius: 32px;
+      background: linear-gradient(120deg, #ece0fa, #ffe4f0);
+      text-align: center;
+    }
+
+    .contact p {
+      max-width: 650px;
+      margin: 0 auto 18px;
+      color: var(--muted);
+    }
+
+    .contact .actions { justify-content: center; }
+
+    .email {
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 0 20px 28px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .85rem;
+    }
+
+    @media (max-width: 850px) {
+      nav { align-items: flex-start; }
+      .nav-right { justify-content: flex-end; gap: 12px; }
+      .nav-links { gap: 15px; }
+      .hero { gap: 35px; }
+      .skills { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 650px) {
+      nav { flex-direction: column; gap: 16px; }
+      .nav-right { width: 100%; justify-content: space-between; }
+      .nav-links { gap: 13px; }
+      .hero { grid-template-columns: 1fr; padding: 30px 0 55px; }
+      .portrait-card { max-width: 370px; width: 100%; margin: auto; transform: none; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 37px 0; }
+      .card-body { padding: 24px; }
+      .cert { flex-direction: column; gap: 5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+      .button:hover { transform: none; }
+    }
+  </style>
 </head>
+
 <body>
+  <a class="skip" href="#main" data-fr="Aller au contenu" data-en="Skip to content">Aller au contenu</a>
 
-<a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Navigation">
+        <a class="logo" href="#">Yassmine.</a>
 
-<header>
-  <div class="wrap">
-    <nav aria-label="Main navigation">
-      <a class="logo" href="#">Yassmine.</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="#about" data-fr="À propos" data-en="About">À propos</a>
+            <a href="#projects" data-fr="Projets" data-en="Projects">Projets</a>
+            <a href="#experience" data-fr="Expériences" data-en="Experience">Expériences</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div class="language-switch" role="group" aria-label="Langue / Language">
+            <button type="button" lang="fr" data-lang="fr" aria-label="Français" aria-pressed="true">FR</button>
+            <button type="button" lang="en" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
+          </div>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div>
+          <span class="badge"
+            data-fr="Stage PFE de 6 mois · Février 2027"
+            data-en="Six-month final-year internship · February 2027">
+            Stage PFE de 6 mois · Février 2027
+          </span>
+
+          <h1>
+            <span data-fr="Bonjour, moi c’est" data-en="Hi, I’m">Bonjour, moi c’est</span><br>
+            <span class="name">Yassmine Megbli.</span>
+          </h1>
+
+          <p class="intro"
+            data-fr="Élève ingénieure en informatique, je m’intéresse au développement logiciel, à la data science et à la finance. J’aime transformer un besoin concret en une application utile."
+            data-en="A computer science engineering student interested in software development, data science and finance. I enjoy turning practical needs into useful applications.">
+            Élève ingénieure en informatique, je m’intéresse au développement logiciel, à la data science et à la finance. J’aime transformer un besoin concret en une application utile.
+          </p>
+
+          <div class="actions">
+            <a class="button" href="#projects" data-fr="Découvrir mes projets" data-en="Explore my projects">Découvrir mes projets</a>
+            <a class="button light" href="mailto:yassminemegbli44@gmail.com" data-fr="Me contacter" data-en="Get in touch">Me contacter</a>
+          </div>
+        </div>
+
+        <figure class="portrait-card">
+          <div class="portrait">
+            <span class="portrait-fallback" aria-hidden="true">YM</span>
+            <img src="profile.png" width="800" height="800" alt="Yassmine Megbli"
+              fetchpriority="high" onerror="this.hidden=true">
+          </div>
+          <figcaption>
+            <strong data-fr="Informatique · Data · Finance" data-en="Software · Data · Finance">Informatique · Data · Finance</strong>
+            <span data-fr="ESPRIT · Tunisie" data-en="ESPRIT · Tunisia">ESPRIT · Tunisie</span>
+          </figcaption>
+        </figure>
       </div>
-    </nav>
+    </div>
+  </header>
 
-    <div class="hero">
-      <div>
-        <span class="badge">Open to a final-year internship · February 2027</span>
-        <h1>Hi, I’m<br><span>Yassmine Megbli.</span></h1>
-        <p class="intro">
-          An engineering student exploring the intersection of
-          software, data and finance — with curiosity and attention to detail.
+  <main id="main" class="wrap">
+    <section id="about">
+      <div class="kicker" data-fr="Quelques mots sur moi" data-en="A little about me">Quelques mots sur moi</div>
+      <h2 data-fr="La curiosité technique, une perspective financière."
+          data-en="Technical curiosity, a financial perspective.">
+        La curiosité technique, une perspective financière.
+      </h2>
+
+      <div class="about-text">
+        <p
+          data-fr="Étudiante en cinquième année à ESPRIT, je me spécialise en informatique financière. Mon parcours associe développement web, analyse de données, machine learning et modélisation financière."
+          data-en="I am a fifth-year engineering student at ESPRIT, specialising in Financial Computing. My studies combine web development, data analysis, machine learning and financial modelling.">
+          Étudiante en cinquième année à ESPRIT, je me spécialise en informatique financière. Mon parcours associe développement web, analyse de données, machine learning et modélisation financière.
         </p>
-        <div class="actions">
-          <a class="button" href="#projects">Discover my work</a>
-          <a class="button light" href="mailto:yassminemegbli44@gmail.com">Let’s connect</a>
+        <p
+          data-fr="Mes stages chez BIAT Assurances et Forvis Mazars m’ont permis d’aborder des problématiques concrètes de tarification en assurance et de cybersécurité. Je recherche un stage de fin d’études de six mois à partir de février 2027."
+          data-en="My internships at BIAT Assurances and Forvis Mazars gave me experience with practical insurance pricing and cybersecurity challenges. I am seeking a six-month final-year internship starting in February 2027.">
+          Mes stages chez BIAT Assurances et Forvis Mazars m’ont permis d’aborder des problématiques concrètes de tarification en assurance et de cybersécurité. Je recherche un stage de fin d’études de six mois à partir de février 2027.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="kicker" data-fr="De l’idée à la réalisation" data-en="From ideas to implementation">De l’idée à la réalisation</div>
+      <h2 data-fr="Mes projets" data-en="Selected projects">Mes projets</h2>
+
+      <div class="grid">
+        <article class="card purple">
+          <div class="card-body">
+            <div class="category" data-fr="FINTECH · PROJET EN ÉQUIPE" data-en="FINTECH · TEAM PROJECT">FINTECH · PROJET EN ÉQUIPE</div>
+            <h3>CrediGuard</h3>
+            <p
+              data-fr="Plateforme fintech académique associant développement web, sécurité des utilisateurs et machine learning."
+              data-en="An academic fintech platform combining web development, user security and machine learning.">
+              Plateforme fintech académique associant développement web, sécurité des utilisateurs et machine learning.
+            </p>
+            <p
+              data-fr="Mes contributions : fonctionnalités e-commerce, gestion des accès avec JWT, rôles et permissions, ainsi que des travaux de scoring et de segmentation."
+              data-en="My contributions included e-commerce features, access management with JWT, roles and permissions, and work on scoring and segmentation.">
+              Mes contributions : fonctionnalités e-commerce, gestion des accès avec JWT, rôles et permissions, ainsi que des travaux de scoring et de segmentation.
+            </p>
+            <div class="tags">
+              <span>Angular</span><span>Spring Boot</span><span>Flask</span><span>MySQL</span><span>ML</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yassmine44/Esprit-PIINFINI-4infini2-2526-CrediGuard-FRONT">GitHub Frontend</a>
+              <a href="https://github.com/nadine-chrigui/Esprit-PIINFINI-4infini2-2526-CrediGuard-BACK">GitHub Backend</a>
+              <a href="https://lnkd.in/p/dTSws9wY" data-fr="Voir la démo" data-en="Watch the demo">Voir la démo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card pink">
+          <img class="project-image" src="auralis.png"
+            alt="Auralis — présentation du projet"
+            data-alt-fr="Auralis — présentation du projet"
+            data-alt-en="Auralis — project presentation"
+            loading="lazy" onerror="this.hidden=true">
+          <div class="card-body">
+            <div class="category"
+              data-fr="ENTREPREN’UP · 3ᵉ PLACE"
+              data-en="ENTREPREN’UP · THIRD PLACE">ENTREPREN’UP · 3ᵉ PLACE</div>
+            <h3>Auralis</h3>
+            <p
+              data-fr="Projet en équipe autour de l’intelligence artificielle, de la business intelligence et de la cybersécurité appliquées aux risques financiers."
+              data-en="A team project exploring artificial intelligence, business intelligence and cybersecurity for financial risk.">
+              Projet en équipe autour de l’intelligence artificielle, de la business intelligence et de la cybersécurité appliquées aux risques financiers.
+            </p>
+            <p
+              data-fr="J’ai contribué au travail technique, à l’analyse financière, à l’étude de marché, au business plan et au pitch. Le projet a obtenu la troisième place à Entrepren’Up."
+              data-en="I contributed to the technical work, financial analysis, market research, business plan and pitch. The project earned third place at Entrepren’Up.">
+              J’ai contribué au travail technique, à l’analyse financière, à l’étude de marché, au business plan et au pitch. Le projet a obtenu la troisième place à Entrepren’Up.
+            </p>
+            <div class="tags">
+              <span>AI</span><span>Business Intelligence</span>
+              <span data-fr="Risques financiers" data-en="Financial risk">Risques financiers</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="project-image" src="malah-padel.png"
+            alt="Page de présentation de Malah Padel"
+            data-alt-fr="Page de présentation de Malah Padel"
+            data-alt-en="Malah Padel about page"
+            loading="lazy" onerror="this.hidden=true">
+          <div class="card-body">
+            <div class="category"
+              data-fr="DÉVELOPPEMENT WEB · PROJET INTÉGRÉ DE 3ᵉ ANNÉE"
+              data-en="WEB DEVELOPMENT · THIRD-YEAR TEAM PROJECT">
+              DÉVELOPPEMENT WEB · PROJET INTÉGRÉ DE 3ᵉ ANNÉE
+            </div>
+            <h3>Malah Padel</h3>
+            <p
+              data-fr="Application web de gestion d’un club de padel : terrains, réservations, événements, équipes et équipements, avec un espace utilisateur et un backoffice."
+              data-en="A padel club management web application covering courts, bookings, events, teams and equipment, with a user area and an administration backoffice.">
+              Application web de gestion d’un club de padel : terrains, réservations, événements, équipes et équipements, avec un espace utilisateur et un backoffice.
+            </p>
+            <p>
+              <strong data-fr="Ma contribution : " data-en="My contribution: ">Ma contribution : </strong>
+              <span
+                data-fr="développement des modules de gestion des utilisateurs et des événements."
+                data-en="development of the user and event management modules.">
+                développement des modules de gestion des utilisateurs et des événements.
+              </span>
+            </p>
+            <div class="tags">
+              <span>PHP</span><span>Symfony 6.4</span><span>Doctrine ORM</span>
+              <span>MySQL</span><span>Twig</span><span>Bootstrap</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yassmine44/malahpadel_s2-integration"
+                data-fr="Voir sur GitHub" data-en="View on GitHub">Voir sur GitHub</a>
+            </div>
+            <details>
+              <summary data-fr="Fonctionnalités du projet collectif" data-en="Team project features">Fonctionnalités du projet collectif</summary>
+              <p
+                data-fr="Comptes et profils, gestion des terrains et réservations, événements et équipes, catalogue et panier, ainsi qu’une interface d’administration."
+                data-en="Accounts and profiles, court and booking management, events and teams, a product catalogue and basket, and an administration interface.">
+                Comptes et profils, gestion des terrains et réservations, événements et équipes, catalogue et panier, ainsi qu’une interface d’administration.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <article class="card purple">
+          <div class="card-body">
+            <div class="category" data-fr="DATA SCIENCE · PROJET DE STAGE" data-en="DATA SCIENCE · INTERNSHIP PROJECT">DATA SCIENCE · PROJET DE STAGE</div>
+            <h3 data-fr="Tarification automobile" data-en="Motor insurance pricing">Tarification automobile</h3>
+            <p
+              data-fr="Analyse des données de production et de sinistres de BIAT Assurances sur la période 2019–2023 pour la tarification automobile Tous Risques."
+              data-en="Analysis of BIAT Assurances policy and claims data from 2019–2023 to support comprehensive motor insurance pricing.">
+              Analyse des données de production et de sinistres de BIAT Assurances sur la période 2019–2023 pour la tarification automobile Tous Risques.
+            </p>
+            <p
+              data-fr="Préparation d’une base police-année, analyse des expositions et facteurs de risque, modélisation de la fréquence par GLM de Poisson et backtesting."
+              data-en="Prepared a policy-year dataset, analysed exposure and risk factors, modelled claims frequency using a Poisson GLM and performed backtesting.">
+              Préparation d’une base police-année, analyse des expositions et facteurs de risque, modélisation de la fréquence par GLM de Poisson et backtesting.
+            </p>
+            <div class="tags">
+              <span>Python</span><span>Pandas</span><span>GLM</span><span>CRISP-DM</span><span>Excel</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card pink">
+          <div class="card-body">
+            <div class="category" data-fr="DÉVELOPPEMENT FULL-STACK" data-en="FULL-STACK DEVELOPMENT">DÉVELOPPEMENT FULL-STACK</div>
+            <h3 data-fr="Workflow bancaire" data-en="Banking workflow application">Workflow bancaire</h3>
+            <p
+              data-fr="Application web bancaire intégrant des services REST et la gestion des accès utilisateurs."
+              data-en="A banking web application integrating REST services and user access management.">
+              Application web bancaire intégrant des services REST et la gestion des accès utilisateurs.
+            </p>
+            <p
+              data-fr="Travail sur l’authentification et les autorisations avec Active Directory / LDAP, JWT, rôles et permissions."
+              data-en="Worked on authentication and authorisation with Active Directory / LDAP, JWT, roles and permissions.">
+              Travail sur l’authentification et les autorisations avec Active Directory / LDAP, JWT, rôles et permissions.
+            </p>
+            <div class="tags">
+              <span>Angular</span><span>Spring Boot</span><span>Oracle</span><span>REST</span><span>JWT</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="kicker" data-fr="Apprendre sur le terrain" data-en="Learning through practice">Apprendre sur le terrain</div>
+      <h2 data-fr="Mes expériences" data-en="My experience">Mes expériences</h2>
+
+      <div class="timeline">
+        <article class="job">
+          <div class="date" data-fr="Juin – Août 2026" data-en="June – August 2026">Juin – Août 2026</div>
+          <h3 data-fr="BIAT Assurances · Stage Data Science & Actuariat Non-Vie"
+              data-en="BIAT Assurances · Data Science & Non-Life Actuarial Intern">
+            BIAT Assurances · Stage Data Science &amp; Actuariat Non-Vie
+          </h3>
+          <p
+            data-fr="Nettoyage et rapprochement des données de production et de sinistres SAP avec Python, Pandas et Excel. Analyse de la fréquence et des expositions, puis application de méthodes statistiques et de machine learning à la tarification automobile."
+            data-en="Cleaned and reconciled policy and SAP claims data with Python, Pandas and Excel. Analysed claims frequency and exposure, then applied statistical and machine learning methods to motor insurance pricing.">
+            Nettoyage et rapprochement des données de production et de sinistres SAP avec Python, Pandas et Excel. Analyse de la fréquence et des expositions, puis application de méthodes statistiques et de machine learning à la tarification automobile.
+          </p>
+        </article>
+
+        <article class="job">
+          <div class="date" data-fr="Juillet – Août 2025" data-en="July – August 2025">Juillet – Août 2025</div>
+          <h3 data-fr="Forvis Mazars · Stage en cybersécurité"
+              data-en="Forvis Mazars · Cybersecurity Intern">Forvis Mazars · Stage en cybersécurité</h3>
+          <p
+            data-fr="Au sein du Security Excellence Center : configuration de Snort, création de règles de détection, intégration des alertes dans une chaîne ELK avec Docker et tableaux de bord Kibana pour analyser des attaques simulées."
+            data-en="At the Security Excellence Center: configured Snort, created detection rules, integrated alerts into an ELK pipeline using Docker and built Kibana dashboards to analyse simulated attacks.">
+            Au sein du Security Excellence Center : configuration de Snort, création de règles de détection, intégration des alertes dans une chaîne ELK avec Docker et tableaux de bord Kibana pour analyser des attaques simulées.
+          </p>
+        </article>
+
+        <article class="job">
+          <div class="date" data-fr="Juin 2022" data-en="June 2022">Juin 2022</div>
+          <h3 data-fr="Tunisie Telecom · Stage d’initiation"
+              data-en="Tunisie Telecom · Introductory Intern">Tunisie Telecom · Stage d’initiation</h3>
+          <p
+            data-fr="Première découverte d’un environnement professionnel dans le secteur des télécommunications à Kairouan."
+            data-en="Initial exposure to a professional telecommunications environment in Kairouan.">
+            Première découverte d’un environnement professionnel dans le secteur des télécommunications à Kairouan.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="kicker" data-fr="Mes outils" data-en="My toolkit">Mes outils</div>
+      <h2 data-fr="Compétences techniques" data-en="Technical skills">Compétences techniques</h2>
+
+      <div class="skills">
+        <article class="card">
+          <div class="card-body">
+            <h3 data-fr="Développement" data-en="Development">Développement</h3>
+            <p>Java, Spring Boot, Angular, TypeScript, JavaScript, PHP, Symfony, Python, REST APIs, JavaFX, C/C++.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3 data-fr="Data & modélisation" data-en="Data & modelling">Data &amp; modélisation</h3>
+            <p
+              data-fr="Pandas, GLM, régression logistique, Random Forest, XGBoost, K-Means, ACP, SQL et Excel."
+              data-en="Pandas, GLMs, logistic regression, Random Forest, XGBoost, K-Means, PCA, SQL and Excel.">
+              Pandas, GLM, régression logistique, Random Forest, XGBoost, K-Means, ACP, SQL et Excel.
+            </p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3 data-fr="Outils & sécurité" data-en="Tools & security">Outils &amp; sécurité</h3>
+            <p>Git, Docker, Linux, MySQL, Oracle, MongoDB, Snort, ELK, JWT, Active Directory / LDAP.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="kicker" data-fr="Parcours & engagement" data-en="Education & community">Parcours &amp; engagement</div>
+      <h2 data-fr="Toujours apprendre" data-en="Always learning">Toujours apprendre</h2>
+
+      <div class="grid">
+        <article class="card purple">
+          <div class="card-body">
+            <div class="category"
+              data-fr="ESPRIT · 2022–2027 · DIPLÔME PRÉVU EN 2027"
+              data-en="ESPRIT · 2022–2027 · EXPECTED GRADUATION IN 2027">
+              ESPRIT · 2022–2027 · DIPLÔME PRÉVU EN 2027
+            </div>
+            <h3 data-fr="Cycle ingénieur en informatique" data-en="Computer Science Engineering">Cycle ingénieur en informatique</h3>
+            <p data-fr="Spécialisation en informatique financière." data-en="Specialisation in Financial Computing.">Spécialisation en informatique financière.</p>
+            <p
+              data-fr="Enseignements : machine learning appliqué, processus stochastiques, méthodes de Monte-Carlo, modèles mathématiques pour la finance, marchés financiers, actuariat, mesure du risque, architecture orientée services, DevOps, tests logiciels, RSE et développement durable."
+              data-en="Coursework: applied machine learning, stochastic processes, Monte Carlo methods, mathematical finance, financial markets, actuarial science, risk measurement, service-oriented architecture, DevOps, software testing, CSR and sustainable development.">
+              Enseignements : machine learning appliqué, processus stochastiques, méthodes de Monte-Carlo, modèles mathématiques pour la finance, marchés financiers, actuariat, mesure du risque, architecture orientée services, DevOps, tests logiciels, RSE et développement durable.
+            </p>
+          </div>
+        </article>
+
+        <article class="card pink">
+          <div class="card-body">
+            <h3 data-fr="Vie associative" data-en="Community involvement">Vie associative</h3>
+            <p
+              data-fr="Membre de IEEE Women in Engineering (WIE) et de IEEE Computer Society (CS)."
+              data-en="Member of IEEE Women in Engineering (WIE) and IEEE Computer Society (CS).">
+              Membre de IEEE Women in Engineering (WIE) et de IEEE Computer Society (CS).
+            </p>
+            <h3 data-fr="Langues" data-en="Languages">Langues</h3>
+            <p>
+              <span data-fr="Arabe — langue maternelle" data-en="Arabic — Native">Arabe — langue maternelle</span><br>
+              <span data-fr="Français — B2" data-en="French — B2">Français — B2</span><br>
+              <span data-fr="Anglais — B2" data-en="English — B2">Anglais — B2</span><br>
+              <span data-fr="Allemand — intermédiaire" data-en="German — Intermediate">Allemand — intermédiaire</span>
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="kicker" data-fr="Formation complémentaire" data-en="Further learning">Formation complémentaire</div>
+      <h2 data-fr="Certifications & simulations professionnelles"
+          data-en="Certifications & job simulations">
+        Certifications &amp; simulations professionnelles
+      </h2>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="cert">
+            <a href="https://verify.skilljar.com/c/d2bmteki7xta">Dataiku Core Designer</a>
+            <small data-fr="Septembre 2026" data-en="September 2026">Septembre 2026</small>
+          </div>
+          <div class="cert">
+            <a href="https://www.theforage.com/completion-certificates/Z3pPDqCPapFTSGBgi/25RAqjzJnD3b8YPZv_Z3pPDqCPapFTSGBgi_6aa2d7a8f3d601bc30ba03d8_1789066148162_completion_certificate.pdf">EY Technology Risk — Forage</a>
+            <small data-fr="Septembre 2026" data-en="September 2026">Septembre 2026</small>
+          </div>
+          <div class="cert">
+            <a href="https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_6aa2d7a8f3d601bc30ba03d8_1789070268243_completion_certificate.pdf">Mastercard Cybersecurity — Forage</a>
+            <small data-fr="Septembre 2026" data-en="September 2026">Septembre 2026</small>
+          </div>
+          <div class="cert">
+            <span>PwC US Audit — Forage</span>
+            <small data-fr="Septembre 2026" data-en="September 2026">Septembre 2026</small>
+          </div>
         </div>
       </div>
+    </section>
 
-      <aside class="note" aria-label="Profile summary">
-        <div class="monogram" aria-hidden="true">YM</div>
-        <h2>Code. Analyse. Create.</h2>
-        <p>Final-year engineering student at ESPRIT, specialising in Financial Computing.</p>
-        <p>Interested in building useful applications and understanding the data behind them.</p>
-        <div class="note-bottom">Based in Tunisia · Seeking a six-month internship</div>
-      </aside>
-    </div>
-  </div>
-</header>
-
-<main id="main" class="wrap">
-  <section id="about">
-    <div class="kicker">A little about me</div>
-    <h2>Technical curiosity, financial perspective.</h2>
-    <div class="about-text">
-      <p>
-        I study Computer Science Engineering at ESPRIT, with a specialisation
-        in Financial Computing. I enjoy working across software development,
-        machine learning and financial modelling.
+    <section class="contact" id="contact">
+      <div class="kicker" data-fr="Échangeons" data-en="Let’s connect">Échangeons</div>
+      <h2 data-fr="Une opportunité à partager ?" data-en="Have an opportunity in mind?">Une opportunité à partager ?</h2>
+      <p
+        data-fr="Je serais ravie d’échanger au sujet d’un stage de fin d’études en développement logiciel, data science ou fintech."
+        data-en="I would love to discuss a final-year internship in software engineering, data science or fintech.">
+        Je serais ravie d’échanger au sujet d’un stage de fin d’études en développement logiciel, data science ou fintech.
       </p>
-      <p>
-        Through my projects and internships at BIAT Assurances and Forvis Mazars,
-        I have worked on insurance data, predictive modelling, web applications
-        and cybersecurity. I am looking for a six-month final-year internship
-        starting in February 2027.
-      </p>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="kicker">Things I’ve worked on</div>
-    <h2>Selected projects</h2>
-
-    <div class="grid">
-      <article class="card purple">
-        <div class="category">FINTECH · TEAM PROJECT</div>
-        <h3>CrediGuard</h3>
-        <p>
-          An academic fintech platform combining web development,
-          user security and machine learning.
-        </p>
-        <p>
-          My contributions included e-commerce functionality, JWT-based
-          access management, roles and permissions, and machine learning
-          work on scoring and segmentation.
-        </p>
-        <div class="tags">
-          <span>Angular</span><span>Spring Boot</span>
-          <span>Flask</span><span>MySQL</span><span>ML</span>
-        </div>
-        <div class="links">
-          <a href="https://github.com/yassmine44/Esprit-PIINFINI-4infini2-2526-CrediGuard-FRONT">Frontend</a>
-          <a href="https://github.com/nadine-chrigui/Esprit-PIINFINI-4infini2-2526-CrediGuard-BACK">Backend</a>
-          <a href="https://lnkd.in/p/dTSws9wY">Watch demo</a>
-        </div>
-      </article>
-
-      <article class="card pink">
-        <div class="category">ENTREPREN’UP · THIRD PLACE</div>
-        <h3>Auralis</h3>
-        <p>
-          A team project exploring artificial intelligence, business
-          intelligence and cybersecurity for financial risk.
-        </p>
-        <p>
-          I contributed to the technical work, financial analysis,
-          market research, business plan and pitch.
-          Our project earned third place at Entrepren’Up.
-        </p>
-        <div class="tags">
-          <span>AI</span><span>Financial Risk</span>
-          <span>Business Intelligence</span><span>Entrepreneurship</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="category">DATA SCIENCE · INTERNSHIP PROJECT</div>
-        <h3>Motor insurance pricing</h3>
-        <p>
-          At BIAT Assurances, I analysed policy and claims data covering
-          2019–2023 to support comprehensive motor insurance pricing.
-        </p>
-        <p>
-          My work covered data preparation, policy-year analysis,
-          exposure and risk factors, Poisson GLM modelling and backtesting.
-        </p>
-        <div class="tags">
-          <span>Python</span><span>Pandas</span><span>GLM</span>
-          <span>CRISP-DM</span><span>Excel</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="category">FULL-STACK DEVELOPMENT</div>
-        <h3>Banking workflow application</h3>
-        <p>
-          A banking web application integrating REST services and
-          user access management.
-        </p>
-        <p>
-          Worked on authentication and authorisation with
-          Active Directory / LDAP, JWT, roles and permissions.
-        </p>
-        <div class="tags">
-          <span>Angular</span><span>Spring Boot</span>
-          <span>Oracle</span><span>REST</span><span>JWT</span>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="kicker">Learning through practice</div>
-    <h2>My experience</h2>
-    <div class="timeline">
-      <article class="job">
-        <div class="date">June – August 2026</div>
-        <h3>BIAT Assurances · Data Science &amp; Actuarial Intern</h3>
-        <p>
-          Cleaned and reconciled policy and SAP claims data with Python,
-          Pandas and Excel. Analysed claims frequency and exposure, and
-          applied statistical and machine learning approaches to motor
-          insurance pricing.
-        </p>
-      </article>
-      <article class="job">
-        <div class="date">July – August 2025</div>
-        <h3>Forvis Mazars · Cybersecurity Intern</h3>
-        <p>
-          Worked with the Security Excellence Center on Snort intrusion
-          detection, custom alert rules and an ELK pipeline using Docker.
-          Created Kibana dashboards to analyse simulated attacks.
-        </p>
-      </article>
-      <article class="job">
-        <div class="date">June 2022</div>
-        <h3>Tunisie Telecom · Introductory Intern</h3>
-        <p>Gained initial exposure to a professional telecommunications environment in Kairouan.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="kicker">My toolkit</div>
-    <h2>Skills I bring to a team</h2>
-    <div class="skills">
-      <article class="card">
-        <h3>Development</h3>
-        <p>Java, Spring Boot, Angular, TypeScript, JavaScript, Python, REST APIs, JavaFX, C/C++.</p>
-      </article>
-      <article class="card">
-        <h3>Data &amp; modelling</h3>
-        <p>Pandas, GLMs, logistic regression, Random Forest, XGBoost, K-Means, PCA, SQL and Excel.</p>
-      </article>
-      <article class="card">
-        <h3>Tools &amp; security</h3>
-        <p>Git, Docker, Linux, MySQL, Oracle, MongoDB, Snort, ELK, JWT and Active Directory / LDAP.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="kicker">Studies &amp; community</div>
-    <h2>Always learning</h2>
-    <div class="grid">
-      <article class="card purple">
-        <div class="category">ESPRIT · 2022–2027, EXPECTED</div>
-        <h3>Computer Science Engineering</h3>
-        <p>Specialisation in Financial Computing.</p>
-        <p>
-          Coursework: applied machine learning, stochastic processes,
-          Monte Carlo methods, mathematical finance, financial markets,
-          actuarial science, risk measurement, service-oriented architecture,
-          DevOps and software testing.
-        </p>
-      </article>
-      <article class="card pink">
-        <h3>Beyond the classroom</h3>
-        <p>
-          Member of <strong>IEEE Women in Engineering (WIE)</strong>
-          and <strong>IEEE Computer Society (CS)</strong>.
-        </p>
-        <h3>Languages</h3>
-        <p>
-          Arabic — Native<br>
-          French — B2<br>
-          English — B2<br>
-          German — Intermediate
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <section id="certifications">
-    <div class="kicker">Continuing to grow</div>
-    <h2>Certifications &amp; job simulations</h2>
-    <div class="card">
-      <div class="cert">
-        <a href="https://verify.skilljar.com/c/d2bmteki7xta">Dataiku Core Designer</a>
-        <small>September 2026</small>
+      <a class="email" href="mailto:yassminemegbli44@gmail.com">yassminemegbli44@gmail.com</a>
+      <div class="actions">
+        <a class="button" href="https://www.linkedin.com/in/yassmine-megbli-6ab572330/">LinkedIn</a>
+        <a class="button light" href="https://github.com/yassmine44">GitHub</a>
       </div>
-      <div class="cert">
-        <a href="https://www.theforage.com/completion-certificates/Z3pPDqCPapFTSGBgi/25RAqjzJnD3b8YPZv_Z3pPDqCPapFTSGBgi_6aa2d7a8f3d601bc30ba03d8_1789066148162_completion_certificate.pdf">EY Technology Risk · Forage simulation</a>
-        <small>September 2026</small>
-      </div>
-      <div class="cert">
-        <a href="https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_6aa2d7a8f3d601bc30ba03d8_1789070268243_completion_certificate.pdf">Mastercard Cybersecurity · Forage simulation</a>
-        <small>September 2026</small>
-      </div>
-      <div class="cert">
-        <span>PwC US Audit · Forage simulation</span>
-        <small>September 2026</small>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="contact" id="contact">
-    <div class="kicker">Let’s connect</div>
-    <h2>Have an opportunity in mind?</h2>
-    <p>
-      I would love to discuss a final-year internship in software
-      engineering, data science or fintech.
-    </p>
-    <a class="email" href="mailto:yassminemegbli44@gmail.com">yassminemegbli44@gmail.com</a>
-    <div class="actions">
-      <a class="button" href="https://www.linkedin.com/in/yassmine-megbli-6ab572330/">LinkedIn</a>
-      <a class="button light" href="https://github.com/yassmine44">GitHub</a>
-    </div>
-  </section>
-</main>
+  <footer>
+    © 2026 Yassmine Megbli ·
+    <span data-fr="Informatique, Data & Finance" data-en="Software, Data & Finance">Informatique, Data &amp; Finance</span>
+  </footer>
 
-<footer>© 2026 Yassmine Megbli · Software, Data &amp; Finance</footer>
+  <script>
+    const languageButtons = document.querySelectorAll("[data-lang]");
+
+    function setLanguage(language) {
+      const selectedLanguage = language === "en" ? "en" : "fr";
+
+      document.documentElement.lang = selectedLanguage;
+
+      document.querySelectorAll("[data-fr][data-en]").forEach(element => {
+        element.textContent = element.getAttribute("data-" + selectedLanguage);
+      });
+
+      document.querySelectorAll("[data-alt-fr][data-alt-en]").forEach(image => {
+        image.alt = image.getAttribute("data-alt-" + selectedLanguage);
+      });
+
+      languageButtons.forEach(button => {
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.lang === selectedLanguage)
+        );
+      });
+
+      const description = document.querySelector('meta[name="description"]');
+      description.content = selectedLanguage === "fr"
+        ? "Portfolio de Yassmine Megbli — développement logiciel, data science et finance."
+        : "Yassmine Megbli’s portfolio — software engineering, data science and finance.";
+
+      try {
+        localStorage.setItem("portfolio-language", selectedLanguage);
+      } catch (error) {
+        // Language switching also works when browser storage is unavailable.
+      }
+    }
+
+    languageButtons.forEach(button => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    let initialLanguage = "fr";
+
+    try {
+      const savedLanguage = localStorage.getItem("portfolio-language");
+      if (savedLanguage === "fr" || savedLanguage === "en") {
+        initialLanguage = savedLanguage;
+      }
+    } catch (error) {
+      // French remains the default.
+    }
+
+    setLanguage(initialLanguage);
+  </script>
 </body>
 </html>
