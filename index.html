@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#7546a3">
   <meta name="description" content="Portfolio de Yassmine Megbli — développement logiciel, data science et finance.">
   <title>Yassmine Megbli | Portfolio</title>
+  <meta property="og:title" content="Yassmine Megbli | Portfolio">
+  <meta property="og:description" content="Software engineering, data science and finance portfolio.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%237546a3'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='27' font-weight='bold' fill='white'%3EYM%3C/text%3E%3C/svg%3E">
 
   <style>
@@ -224,9 +226,11 @@
 
     .portrait img {
       position: relative;
-      object-fit: cover;
-      object-position: center 35%;
+      object-fit: contain;
+      object-position: center;
+      transition: opacity .16s ease, transform .3s ease;
     }
+    .portrait img.frame-change { opacity: .82; transform: scale(.985); }
 
     .portrait-fallback {
       display: grid;
@@ -420,6 +424,44 @@
       font-size: .85rem;
     }
 
+
+    .hero { position: relative; isolation: isolate; }
+    .hero::before {
+      content: ""; position: absolute; z-index: -1; width: min(660px, 60vw); aspect-ratio: 1;
+      right: -7%; top: 2%; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, #fff 0 24%, #faeaf3 48%, #eee3f8 70%, transparent 72%);
+      transition: background .45s ease, transform .6s ease;
+    }
+    .hero[data-reaction="left"]::before { transform: translateX(-16px); }
+    .hero[data-reaction="right"]::before { transform: translateX(16px); }
+    .hero[data-reaction="hello"]::before { transform: scale(1.06); background: radial-gradient(circle, #fff 0 20%, #f8ddeb 48%, #e9dbf7 69%, transparent 72%); }
+    .hero-interaction { margin-top: 22px; }
+    .interaction-hint { margin: 0 0 10px; color: var(--muted); font-size: .88rem; }
+    .interaction-message { min-height: 1.8em; color: var(--purple-dark); font: 500 1.05rem Georgia, serif; }
+    .zone-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
+    .zone-button {
+      border: 1px solid #dfcce9; border-radius: 22px; padding: 7px 13px; background: #ffffffbd;
+      color: var(--purple-dark); cursor: pointer; font-size: .82rem; transition: .2s ease;
+    }
+    .zone-button:hover, .zone-button[aria-pressed="true"] { border-color: var(--purple); background: #f2e9fa; }
+    .portrait-card { transition: transform .35s ease, box-shadow .35s ease; }
+    .hero[data-reaction="left"] .portrait-card { transform: rotate(-1deg) translateX(-5px); }
+    .hero[data-reaction="right"] .portrait-card { transform: rotate(3deg) translateX(5px); }
+    .hero[data-reaction="hello"] .portrait-card { transform: rotate(0) translateY(-5px); box-shadow: 0 28px 75px #a4357130; }
+    .cv-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+    .cv-actions a { font-size: .82rem; }
+    .nav-toggle { display: none; }
+    .project-image { aspect-ratio: 16 / 9; object-fit: cover; }
+    @media (max-width: 650px) {
+      .nav-right { align-items: flex-start; }
+      .nav-links { width: 100%; }
+      .hero::before { width: 100vw; right: -15%; top: 48%; }
+      .hero[data-reaction] .portrait-card { transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before, .portrait-card, .zone-button { transition: none; }
+    }
+
     @media (max-width: 850px) {
       nav { align-items: flex-start; }
       .nav-right { justify-content: flex-end; gap: 12px; }
@@ -494,12 +536,25 @@
             <a class="button" href="#projects" data-fr="Découvrir mes projets" data-en="Explore my projects">Découvrir mes projets</a>
             <a class="button light" href="mailto:yassminemegbli44@gmail.com" data-fr="Me contacter" data-en="Get in touch">Me contacter</a>
           </div>
+          <div class="cv-actions">
+            <a class="button light" id="cv-download" href="cv-fr.pdf" download data-fr="Télécharger mon CV" data-en="Download my CV">Télécharger mon CV</a>
+          </div>
+          <div class="hero-interaction">
+            <p class="interaction-hint" data-fr="Choisis un côté ou survole la photo pour découvrir." data-en="Choose a side or hover over the photo to explore.">Choisis un côté ou survole la photo pour découvrir.</p>
+            <p class="interaction-message" id="hero-message" aria-live="polite" data-fr="Ravie de te voir ici !" data-en="Lovely to have you here!">Ravie de te voir ici !</p>
+            <div class="zone-buttons" role="group" aria-label="Interaction du portrait / Portrait interaction">
+              <button class="zone-button" type="button" data-zone="left" aria-pressed="false" data-fr="À gauche" data-en="Left">À gauche</button>
+              <button class="zone-button" type="button" data-zone="hello" aria-pressed="true" data-fr="Bonjour !" data-en="Hello!">Bonjour !</button>
+              <button class="zone-button" type="button" data-zone="right" aria-pressed="false" data-fr="À droite" data-en="Right">À droite</button>
+            </div>
+          </div>
         </div>
 
         <figure class="portrait-card">
           <div class="portrait">
             <span class="portrait-fallback" aria-hidden="true">YM</span>
-            <img src="profile.png" width="800" height="800" alt="Yassmine Megbli"
+            <img id="character-frame" src="avatar-work.webp" width="640" height="640" alt="Yassmine working at her laptop"
+              data-alt-fr="Yassmine travaille sur son ordinateur" data-alt-en="Yassmine working at her laptop"
               fetchpriority="high" onerror="this.hidden=true">
           </div>
           <figcaption>
@@ -556,9 +611,9 @@
               <span>Angular</span><span>Spring Boot</span><span>Flask</span><span>MySQL</span><span>ML</span>
             </div>
             <div class="links">
-              <a href="https://github.com/yassmine44/Esprit-PIINFINI-4infini2-2526-CrediGuard-FRONT">GitHub Frontend</a>
-              <a href="https://github.com/nadine-chrigui/Esprit-PIINFINI-4infini2-2526-CrediGuard-BACK">GitHub Backend</a>
-              <a href="https://lnkd.in/p/dTSws9wY" data-fr="Voir la démo" data-en="Watch the demo">Voir la démo</a>
+              <a href="https://github.com/yassmine44/Esprit-PIINFINI-4infini2-2526-CrediGuard-FRONT" target="_blank" rel="noopener noreferrer">GitHub Frontend</a>
+              <a href="https://github.com/nadine-chrigui/Esprit-PIINFINI-4infini2-2526-CrediGuard-BACK" target="_blank" rel="noopener noreferrer">GitHub Backend</a>
+              <a href="https://lnkd.in/p/dTSws9wY" target="_blank" rel="noopener noreferrer" data-fr="Voir la démo" data-en="Watch the demo">Voir la démo</a>
             </div>
           </div>
         </article>
@@ -622,7 +677,7 @@
               <span>MySQL</span><span>Twig</span><span>Bootstrap</span>
             </div>
             <div class="links">
-              <a href="https://github.com/yassmine44/malahpadel_s2-integration"
+              <a href="https://github.com/yassmine44/malahpadel_s2-integration" target="_blank" rel="noopener noreferrer"
                 data-fr="Voir sur GitHub" data-en="View on GitHub">Voir sur GitHub</a>
             </div>
             <details>
@@ -802,7 +857,7 @@
       <div class="card">
         <div class="card-body">
           <div class="cert">
-            <a href="https://verify.skilljar.com/c/d2bmteki7xta">Dataiku Core Designer</a>
+            <a href="https://verify.skilljar.com/c/d2bmteki7xta" target="_blank" rel="noopener noreferrer">Dataiku Core Designer</a>
             <small data-fr="Septembre 2026" data-en="September 2026">Septembre 2026</small>
           </div>
           <div class="cert">
@@ -831,8 +886,8 @@
       </p>
       <a class="email" href="mailto:yassminemegbli44@gmail.com">yassminemegbli44@gmail.com</a>
       <div class="actions">
-        <a class="button" href="https://www.linkedin.com/in/yassmine-megbli-6ab572330/">LinkedIn</a>
-        <a class="button light" href="https://github.com/yassmine44">GitHub</a>
+        <a class="button" href="https://www.linkedin.com/in/yassmine-megbli-6ab572330/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="button light" href="https://github.com/yassmine44" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </section>
   </main>
@@ -857,6 +912,15 @@
       document.querySelectorAll("[data-alt-fr][data-alt-en]").forEach(image => {
         image.alt = image.getAttribute("data-alt-" + selectedLanguage);
       });
+      const animatedPortrait = document.getElementById("character-frame");
+      if (animatedPortrait && typeof altText !== "undefined") {
+        animatedPortrait.alt = altText[selectedLanguage][currentFrame];
+        const translatedMessages = messages[selectedLanguage];
+        heroMessage.textContent = currentReaction === "left" ? translatedMessages.left
+          : currentReaction === "right" ? translatedMessages.right
+          : currentFrame === "point" ? translatedMessages.point
+          : currentReaction === "hello" ? translatedMessages.hello : translatedMessages.idle;
+      }
 
       languageButtons.forEach(button => {
         button.setAttribute(
@@ -864,6 +928,12 @@
           String(button.dataset.lang === selectedLanguage)
         );
       });
+
+      const cv = document.getElementById("cv-download");
+      if (cv) {
+        cv.href = selectedLanguage === "fr" ? "cv-fr.pdf" : "cv-en.pdf";
+        cv.download = selectedLanguage === "fr" ? "Yassmine-Megbli-CV-FR.pdf" : "Yassmine-Megbli-CV-EN.pdf";
+      }
 
       const description = document.querySelector('meta[name="description"]');
       description.content = selectedLanguage === "fr"
@@ -881,6 +951,106 @@
       button.addEventListener("click", () => setLanguage(button.dataset.lang));
     });
 
+    const hero = document.querySelector(".hero");
+    const portrait = document.querySelector(".portrait");
+    const character = document.getElementById("character-frame");
+    const heroMessage = document.getElementById("hero-message");
+    const zoneButtons = document.querySelectorAll(".zone-button");
+    const frameFiles = {
+      work: "avatar-work.webp", left: "avatar-left.webp", right: "avatar-right.webp",
+      look: "avatar-look.webp", headsetOff: "avatar-headset-off.webp",
+      headsetNeck: "avatar-headset-neck.webp", wave: "avatar-wave.webp", point: "avatar-point.webp"
+    };
+    const messages = {
+      fr: { idle: "Ravie de te voir ici !", left: "Quelqu’un par ici ?", right: "Tu explores mes projets ?", hello: "Salut ! Bienvenue dans mon portfolio.", point: "Découvre mes projets juste en dessous ↓" },
+      en: { idle: "Lovely to have you here!", left: "Anyone over here?", right: "Exploring my projects?", hello: "Hi! Welcome to my portfolio.", point: "Explore my projects just below ↓" }
+    };
+    const altText = {
+      fr: { work: "Yassmine travaille sur son ordinateur", left: "Yassmine regarde à gauche", right: "Yassmine regarde à droite", look: "Yassmine sourit au visiteur", headsetOff: "Yassmine enlève son casque", headsetNeck: "Yassmine porte son casque autour du cou", wave: "Yassmine fait un signe de la main", point: "Yassmine montre les projets plus bas" },
+      en: { work: "Yassmine working at her laptop", left: "Yassmine looking left", right: "Yassmine looking right", look: "Yassmine smiling at the visitor", headsetOff: "Yassmine taking off her headset", headsetNeck: "Yassmine wearing her headset around her neck", wave: "Yassmine waving hello", point: "Yassmine pointing to the projects below" }
+    };
+    let reactionTimer;
+    let sequenceTimers = [];
+    let currentFrame = "work";
+    let currentReaction = "idle";
+
+    Object.values(frameFiles).forEach(file => { const preload = new Image(); preload.src = file; });
+
+    function setFrame(name) {
+      if (!frameFiles[name] || currentFrame === name) return;
+      currentFrame = name;
+      character.classList.add("frame-change");
+      character.src = frameFiles[name];
+      const lang = document.documentElement.lang === "en" ? "en" : "fr";
+      character.alt = altText[lang][name];
+      window.setTimeout(() => character.classList.remove("frame-change"), 130);
+    }
+
+    function clearSequence() {
+      sequenceTimers.forEach(window.clearTimeout);
+      sequenceTimers = [];
+    }
+
+    function setMessage(key) {
+      const lang = document.documentElement.lang === "en" ? "en" : "fr";
+      heroMessage.textContent = messages[lang][key];
+    }
+
+    function resetToWork() {
+      clearTimeout(reactionTimer);
+      clearSequence();
+      currentReaction = "idle";
+      hero.dataset.reaction = "idle";
+      setFrame("work");
+      setMessage("idle");
+      zoneButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.zone === "hello")));
+    }
+
+    function playGreeting() {
+      clearTimeout(reactionTimer);
+      clearSequence();
+      currentReaction = "hello";
+      hero.dataset.reaction = "hello";
+      zoneButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.zone === "hello")));
+      setMessage("hello");
+      setFrame("look");
+      sequenceTimers.push(window.setTimeout(() => setFrame("headsetOff"), 650));
+      sequenceTimers.push(window.setTimeout(() => setFrame("headsetNeck"), 1300));
+      sequenceTimers.push(window.setTimeout(() => setFrame("wave"), 1950));
+      sequenceTimers.push(window.setTimeout(() => { setFrame("point"); setMessage("point"); }, 3300));
+      sequenceTimers.push(window.setTimeout(resetToWork, 6200));
+    }
+
+    function showSide(zone) {
+      clearTimeout(reactionTimer);
+      clearSequence();
+      currentReaction = zone;
+      hero.dataset.reaction = zone;
+      setFrame(zone);
+      setMessage(zone);
+      zoneButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.zone === zone)));
+      reactionTimer = window.setTimeout(resetToWork, 2400);
+    }
+
+    function showReaction(zone) {
+      if (zone === "hello") {
+        if (currentReaction !== "hello") playGreeting();
+      } else if ((zone === "left" || zone === "right") && currentReaction !== zone) {
+        showSide(zone);
+      }
+    }
+
+    zoneButtons.forEach(button => button.addEventListener("click", () => showReaction(button.dataset.zone)));
+    portrait.addEventListener("pointermove", event => {
+      if (event.pointerType !== "mouse") return;
+      const rect = portrait.getBoundingClientRect();
+      const ratio = (event.clientX - rect.left) / rect.width;
+      showReaction(ratio < 0.34 ? "left" : ratio > 0.66 ? "right" : "hello");
+    });
+    portrait.addEventListener("pointerleave", resetToWork);
+    window.addEventListener("keydown", event => {
+      if (event.key === "Escape") resetToWork();
+    });
     let initialLanguage = "fr";
 
     try {
